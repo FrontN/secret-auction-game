@@ -1,11 +1,53 @@
 import os
+import time
 from Secret_Auction_art import logo
-print(logo)
-print("Welcome to the secret Auction")
 
 def clear_screen():
-    """Clear the console screen."""
+    """
+    Clears the screen and prints the logo.
+
+    This function uses the `os.system` function to clear the screen, and
+    then prints the logo defined in the `Secret_Auction_art` module.
+
+    Returns:
+        None
+    """
     os.system('cls' if os.name == 'nt' else 'clear')
+    print(logo)
+
+def get_valid_int(prompt):
+    """
+    Prompts the user to enter a valid integer and returns the input as an int.
+
+    Args:
+        prompt (str): The prompt to display to the user.
+
+    Returns:
+        int: The valid integer entered by the user.
+    """
+    while True:
+        try:
+            return int(input(prompt))
+        except ValueError:
+            print("Invalid input. Please enter a valid integer.")
+
+def get_valid_input(prompt, options):
+    """
+    Prompts the user to enter a valid input from a given set of options and returns the input as a string.
+
+    Args:
+        prompt (str): The prompt to display to the user.
+        options (list): A list of valid inputs.
+
+    Returns:
+        str: The valid input entered by the user.
+    """
+    while True:
+        user_input = input(prompt).lower()
+        if user_input in options:
+            return user_input
+        else:
+            print(f"Invalid input. Please enter one of the following options: {','.join(options)}")
 
 def find_highest_bidder(bidding_record):
     """
@@ -27,26 +69,36 @@ def find_highest_bidder(bidding_record):
             winner = x
     print(f"The winner is: {winner} with a bid of: {highest_bid}")
 
-bidders = {}
-keep_going = True
+def main():
+    """
+    This is the main function of the program. It clears the screen, prints
+    a welcome message, and then enters a loop where it prompts the user
+    to enter their name and bid. It then adds the name and bid to a
+    dictionary, and continues to do so until the user decides to
+    stop. Finally, it prints out the winner and their bid amount.
 
-while keep_going:
-    name = input("Please enter your name: ")
-    bid = int(input("How much do you want to bid?: "))
-    bidders[name] = bid
+    Returns:
+        None
+    """
+    clear_screen()
+    print("Welcome to the secret Auction")
+    time.sleep(1.5)
+    bidders = {}
+    keep_going = True
 
-    new_bidder = True
-    while new_bidder:
-        next_bidder = input("Are there any other bidders? Type 'yes' or 'no'.").lower()
-        if next_bidder == 'yes':
+    while keep_going:
+        clear_screen()
+        name = input("Please enter your name: ")
+        clear_screen()
+        print(f"Welcome {name}".center(50, "*"))
+        bidders[name] = get_valid_int("How much do you want to bid?: ")
+
+        clear_screen()
+        if  get_valid_input("Are there any other bidders? Type 'yes' or 'no'.\n", ['yes', 'no', 'y', 'n']).startswith('n'):
             clear_screen()
-            print(logo)
-            new_bidder = False
-        elif next_bidder == 'no':
-            clear_screen()
-            print(logo)
             find_highest_bidder(bidders)
             keep_going = False
-            new_bidder = False
-        else:
-            print("Opzione non valida")
+            print("Goodbye!")
+
+if __name__ == "__main__":
+    main()
