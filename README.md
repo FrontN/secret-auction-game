@@ -1,26 +1,9 @@
-# secret-auction-game
-🕵️‍♂️ Secret Auction ProgramA blind auction console application where multiple users can place bids privately. The program clears the screen between bidders to ensure total secrecy, and identifies the winner once all bids are placed.
-📖 DescriptionThe Secret Auction is a classic programming challenge that demonstrates the power of Dictionaries and Flow Control in Python. Unlike a traditional auction where bids are public, this program stores data internally and only reveals the highest bidder at the very end.
-Key Features:
-Encapsulated Logic: Uses a dedicated function find_highest_bidder to process results.
-Dictionary Mapping: Efficiently maps unique names (keys) to bid amounts (values).
-Screen Clearing: Utilizes the os module to wipe the terminal after each entry, preventing other participants from seeing previous bids.
-Input Validation Loop: Features a nested while loop to ensure users provide valid "yes/no" responses.
-🛠️ Technical Breakdown
-How it Works:
-Data Collection: The program prompts for a name and a bid price.
-Storage: The data is added to a dictionary: bidders[name] = bid.
-The "Blind" Mechanism: The console is cleared using os.system('cls') (Windows) or clear (Linux/Mac).
-The Winner Calculation: The program iterates through the dictionary in $O(n)$ time complexity to find the maximum value.
-Mathematical Logic:
-The algorithm follows a linear search pattern:
-winner = max(bids.values())
-💻 Installation & Usage
-Clone the repository:
-Navigate to the directory:
-Run the application:
-🧪 Example
-🤝 Contributing
-Contributions, issues, and feature requests are welcome! Feel free to check the .
-Pro-Tip for your GitHub:
-Since you are using a custom module Secret_Auction_art for the logo, make sure that file is also in your repository, otherwise, the code will throw an ImportError.
+Python Secret Auction 🔨Un'applicazione per aste al buio (Secret Auction) basata su console, progettata per garantire la privacy degli offerenti attraverso la pulizia dinamica dello schermo e una gestione sicura dei dati.Features 🎮True Secrecy: Utilizza la pulizia automatica del terminale dopo ogni offerta per impedire agli altri partecipanti di vedere i prezzi inseriti.Robust Input Validation: Funzioni dedicate per intercettare errori di digitazione (es. lettere al posto di cifre per l'offerta) evitando il crash del programma.Dynamic Winner Calculation: Un algoritmo efficiente scansiona il registro delle offerte alla fine della sessione per determinare istantaneamente il vincitore.Smart UI Formatting: Messaggi di benvenuto personalizzati e centrati dinamicamente per ogni utente tramite .center().Elegant ASCII Art: Logo tematico professionale caricato all'avvio per migliorare l'estetica del terminale.Game Rules 📋Objective: Vincere l'asta offrendo il prezzo più alto senza che gli altri conoscano la tua offerta.Workflow:Ogni partecipante inserisce il proprio nome.Il partecipante inserisce l'offerta segretamente.Lo schermo viene pulito immediatamente.Il programma chiede se ci sono altri offerenti.Quando non ci sono più partecipanti, il programma rivela il vincitore e l'offerta più alta.Project Structure 📁Plaintextsecret-auction/
+├── main.py                    # Logica dell'asta e gestione loop
+├── Secret_Auction_art.py      # Asset per ASCII art (logo)
+├── algoritmo_Auction.txt      # Documentazione logica del vincitore
+└── README.md                  # Questo file
+Main Functions Overview:clear_screen() - Rimuove le tracce delle offerte precedenti e stampa il logo.get_valid_int() - Gestisce l'input numerico assicurando che l'offerta sia un numero intero.get_valid_input() - Valida le risposte di controllo (yes/no) per il flusso del programma.find_highest_bidder() - Itera sul dizionario delle offerte per trovare il valore massimo ($O(n)$).main() - Gestisce il dizionario bidders e coordina i turni dei partecipanti.Requirements ✅Python 3.xNessuna dipendenza esterna (utilizza i moduli standard os, time).Installation & Setup 🚀Clona il repository:Bashgit clone https://github.com/FrontN/secret-auction.git
+cd secret-auction
+Avvia l'asta:Bashpython main.py
+Technical Highlights 💡Dictionary Mapping: Utilizza una struttura dati a dizionario per mappare Nome: Offerta in modo efficiente.Platform Independence: Supporto per comandi di sistema sia Windows che Unix-based.Input Sanitization: Converte automaticamente gli input in minuscolo per una validazione più flessibile.Author 👨‍💻FrontN - Sviluppato come esercizio pratico sulla gestione dei dizionari e della privacy dei dati in Python.
