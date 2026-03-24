@@ -50,6 +50,17 @@ def get_valid_input(prompt, options):
             print(f"Invalid input. Please enter one of the following options: {','.join(options)}")
 
 def find_highest_bidder(bidding_record):
+    """
+    Finds the highest bidder in a given bidding record and returns a string
+    stating the winner and their bid amount.
+
+    Args:
+        bidding_record (dict): A dictionary containing the names of the bidders as
+            keys and their bids as values.
+
+    Returns:
+        str: A string stating the winner and their bid amount.
+    """
     highest_bid = 0
     winner = []
     for name, bid in bidding_record.items():
