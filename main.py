@@ -50,24 +50,24 @@ def get_valid_input(prompt, options):
             print(f"Invalid input. Please enter one of the following options: {','.join(options)}")
 
 def find_highest_bidder(bidding_record):
-    """
-    This function takes a dictionary of bidders and their bids, and returns
-    a string declaring the winner and their bid amount.
-
-    Parameters:
-        bidding_record (dict): A dictionary where the keys are the names of the
-            bidders and the values are their respective bids.
-
-    Returns:
-        str: A string declaring the winner and their bid amount.
-    """
     highest_bid = 0
-    winner = ""
-    for x in bidding_record:
-        if bidding_record[x] > highest_bid:
-            highest_bid = bidding_record[x]
-            winner = x
-    print(f"The winner is: {winner} with a bid of: {highest_bid}")
+    winner = []
+    for name, bid in bidding_record.items():
+        if bid > highest_bid:
+            highest_bid = bid
+            winner = [name]
+        elif bid == highest_bid:
+            winner.append(name) 
+       
+    if  len(winner) > 1:
+        print(f"There is a tie at {highest_bid} between: {', '.join(winner)}")
+        time.sleep(1.5)
+        clear_screen()
+        for name in winner:
+            bidding_record[name] += get_valid_int(f"{name}, how much do you want to increase your bid?: ")
+            clear_screen()
+        return find_highest_bidder(bidding_record)
+    return f"The winner is: {winner[0]} with a bid of: {highest_bid}"
 
 def main():
     """
@@ -96,7 +96,7 @@ def main():
         clear_screen()
         if  get_valid_input("Are there any other bidders? Type 'yes' or 'no'.\n", ['yes', 'no', 'y', 'n']).startswith('n'):
             clear_screen()
-            find_highest_bidder(bidders)
+            print(find_highest_bidder(bidders))
             keep_going = False
             print("Goodbye!")
 
